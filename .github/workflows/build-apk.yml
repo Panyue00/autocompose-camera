@@ -23,7 +23,8 @@ jobs:
           sudo apt install -y python3-pip python3-dev build-essential git \
             autoconf libtool pkg-config zlib1g-dev libncurses5-dev \
             libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev \
-            openjdk-17-jdk libltdl-dev
+            openjdk-17-jdk libltdl-dev libgl1-mesa-dev libegl1-mesa-dev \
+            libgles2-mesa-dev
           pip install buildozer cython==0.29.37
 
       - name: Build APK
