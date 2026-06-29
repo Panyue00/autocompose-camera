@@ -27,7 +27,17 @@ jobs:
           pip install buildozer cython==0.29.37
 
       - name: Build APK
+        id: build
+        continue-on-error: true
         run: buildozer android debug
+
+      - name: Fix aidl — install build-tools
+        if: steps.build.outcome == 'failure'
+        run: |
+          SDK_DIR=$HOME/.buildozer/android/platform/android-sdk
+          echo "Installing build-tools into $SDK_DIR"
+          $SDK_DIR/cmdline-tools/latest/bin/sdkmanager --sdk_root=$SDK_DIR "build-tools;33.0.0"
+          buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
