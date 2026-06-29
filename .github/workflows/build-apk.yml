@@ -27,11 +27,11 @@ jobs:
           pip install buildozer cython==0.29.37
 
       - name: Build APK
-        env:
-          ANDROIDSDK: /usr/local/lib/android/sdk
-          ANDROID_HOME: /usr/local/lib/android/sdk
-          ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/27.3.13750724
-        run: buildozer android debug
+        run: |
+          # Add system aidl to PATH (buildozer's own SDK lacks build-tools)
+          export PATH="/usr/local/lib/android/sdk/build-tools/35.0.0:$PATH"
+          which aidl
+          buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
