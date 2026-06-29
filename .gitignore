@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+.kivy/
+*.log
+bin/
+buildozer/.buildozer/
+.android/
+*.apk
+*.aab
+.idea/
+*.iml
